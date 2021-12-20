@@ -1,12 +1,9 @@
-- 👋 Hi, I’m @WillKenzie
-- 👀 I’m interested in Artifical Intelligence and Python Simulations
-- 🌱 I’m currently learning Python
-- 💞️ I’m looking to collaborate on Solus
-- 📫 How to reach me ... Email! thewilldev@protonmail.com
+Hello! My name is William Kenzie!
 
-I love pull requests! If you find something wrong with my code, make a PR! 
+- I got 1st place in Regionals at Buisness Professionals of America for Python
+- I'm studying Python
+- I know Python and Javascript
+- I am tinkering with HTML and TailwindCSS
+- I like EJS :)
 
-<!---
-WillKenzie/WillKenzie is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+You can reach me via email at thewilldev@protonmail.com
