@@ -1,0 +1,26 @@
+{
+  "name": "ejs-page-generator",
+  "version": "1.0.0",
+  "description": "Generates a webpage based on markdown and a header/footer combination",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WillKenzie/WillKenzie.git"
+  },
+  "author": "William Kenzie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WillKenzie/WillKenzie/issues"
+  },
+  "homepage": "https://github.com/WillKenzie/WillKenzie#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "marked": "^4.0.17"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0"
+  }
+}
