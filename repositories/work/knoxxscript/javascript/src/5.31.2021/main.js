@@ -1,5 +1,0 @@
-class Window {
-    constructor(){
-
-    }
-}

@@ -1,0 +1,32 @@
+{
+  "name": "kidsafe-bot",
+  "version": "1.0.0",
+  "description": "An automatic detection bot for common creepy phrases. My first attempt at what would later grow into Quinn.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willkenzie/willkenzie.git"
+  },
+  "keywords": [
+    "kid",
+    "children",
+    "kidsafe",
+    "quinn",
+    "solusproject",
+    "first",
+    "code"
+  ],
+  "author": "William Kenzie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willkenzie/willkenzie/issues"
+  },
+  "homepage": "https://github.com/willkenzie/willkenzie#readme",
+  "dependencies": {
+    "discord.js": "^13.8.1",
+    "dotenv": "^16.0.1"
+  }
+}

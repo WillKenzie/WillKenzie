@@ -1,0 +1,28 @@
+{
+  "name": "javascript-cheatsheet",
+  "version": "1.0.0",
+  "description": "A quick Javascript reference/cheatsheet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willkenzie/willkenzie.git"
+  },
+  "keywords": [
+    "javascript",
+    "cheatsheet",
+    "reference",
+    "guide"
+  ],
+  "author": "William Kenzie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willkenzie/willkenzie/issues"
+  },
+  "homepage": "https://github.com/willkenzie/willkenzie#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}

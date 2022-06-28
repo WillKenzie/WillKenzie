@@ -1,0 +1,25 @@
+{
+  "name": "site-appender",
+  "version": "1.0.0",
+  "description": "Appends some content to a dynamic webpage (I think?)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willkenzie/willkenzie.git"
+  },
+  "keywords": [
+    "website",
+    "generation",
+    "dynamic",
+    "webpages"
+  ],
+  "author": "William Kenzie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willkenzie/willkenzie/issues"
+  },
+  "homepage": "https://github.com/willkenzie/willkenzie#readme"
+}

@@ -1,7 +1,5 @@
-require('dotenv').config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const TOKEN = process.env.TOKEN;
 var boss = require('/home/williamkenzie/Documents/boss.js/boss.js')
 
 client.on('ready', () => { console.log('Boss is online!'); });

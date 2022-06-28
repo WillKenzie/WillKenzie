@@ -1,0 +1,28 @@
+{
+  "name": "boss-chatbot",
+  "version": "1.0.0",
+  "description": "A really old chatbot with no AI or learning capabilities. My first ever chatbot.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willkenzie/willkenzie.git"
+  },
+  "keywords": [
+    "chatbot",
+    "javascript",
+    "early",
+    "programming"
+  ],
+  "author": "William Kenzie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willkenzie/willkenzie/issues"
+  },
+  "homepage": "https://github.com/willkenzie/willkenzie#readme",
+  "dependencies": {
+    "discord.js": "^13.8.1"
+  }
+}
