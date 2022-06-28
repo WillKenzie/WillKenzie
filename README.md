@@ -7,4 +7,4 @@ Hello! My name is William Kenzie!
 - I am tinkering with HTML and TailwindCSS
 - I like EJS :)
 
-You can reach me via email at thewilldev@protonmail.com
+You can reach me via email at me@williamk.dev
