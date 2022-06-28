@@ -1,0 +1,4 @@
+chatterbot
+chatterbot2
+nltk
+spacy

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rain! Run</title>
+  <style>
+    .player {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-image: url(unicorn.png);
+  background-size: cover;
+  bottom: 0px;
+}
+
+.obstacle0 {
+  position: absolute;
+  width: 68px;
+  height: 42px;
+  background-image: url(nyan.gif);
+  background-size: cover;
+  bottom: 0px;
+}
+.obstacle1 {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-image: url(cloud.png);
+  background-size: cover;
+  bottom: 0px;
+}
+.obstacle2 {
+  position: absolute;
+  width: 132px;
+  height: 90px;
+  background-image: url(dragon1.gif);
+  background-size: cover;
+  bottom: 0px;
+}
+.obstacle3 {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-image: url(rainbow.png);
+  background-size: cover;
+  bottom: 0px;
+}
+#alert {
+  width:100%;
+  vertical-align: middle;
+  z-index: 99;
+  position:absolute;
+  display: flex;
+justify-content: center;
+}
+
+@keyframes slideright {
+  from {
+      background-position: 700%;
+  }
+  to {
+      background-position: 0%;
+  }
+}
+
+@-webkit-keyframes slideright {
+  from {
+      background-position: 700%;
+  }
+  to {
+      background-position: 0%;
+  }
+}
+
+#stage {
+  position: absolute;
+  bottom: 0px;
+  background-image: url('background.png');
+  background-repeat: repeat-x;
+  background-size: cover;
+  animation: slideright 600s infinite linear;
+  -webkit-animation: slideright 600s infinite linear;
+  width: 100%;
+  height: 100%;
+}
+  </style>
+  <script src="app.js" charset="utf-8"></script>
+</head>
+<body>
+  <div id="alert"></div>
+  <div id="stage">
+    <div class="grid">
+      <div class="player"></div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+]

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src= 
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> 
+        </script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="captcha" class="captcha"><script>createCaptcha();</script></div>
+      <div class="restart">
+        <a onclick="createCaptcha()" id="reset">Change</a>
+      </div>
+      <div class="input">
+        <input
+          type="text"
+          name="reCaptcha"
+          id="reCaptcha"
+          placeholder="What text is there?"
+        />
+      </div>
+      
+ <div id="submitbox">
+  <input type="button" value="Submit" onclick="validateCaptcha()"/>
+<div>
+      <div id="errCaptcha" class="errmsg"></div>
+    </div>
+  </body>
+</html>

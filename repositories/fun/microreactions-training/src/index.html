@@ -1,0 +1,98 @@
+<body>
+    <div id="imageDiv">
+        <img id='test' src='default.png' height='126px' width='140px'>
+    </div>
+    <button onClick=r1()>Anger</button>
+    <button onClick=r2()>Disgust</button>
+    <button onClick=r3()>Determination</button>
+    <button onClick=r4()>Sadness</button>
+    <button onClick=r5()>Fear</button>
+    <button onClick=setImage()>Again</button>
+    <button onClick=setTime()>Set Time</button>
+
+    <script type="text/javascript">
+    time = 66
+    function setTime() {
+        time = prompt("What time do you want, in milliseconds? \n500 = easy \n250 = medium \n100 = normal \n50 = difficult")
+    }
+
+    function image(thisImg) {
+        var img = document.createElement("IMG");
+        img.src = thisImg;
+        img.id = 'test'
+        img.style.height = '23em'
+        img.style.width = '22em'
+        document.getElementById('imageDiv').replaceChild(img, document.getElementById('test'))
+    }
+    async function setImage() {
+        rng =  Math.floor((Math.random() * 5) + 1);
+        if (rng == 1) {
+        image("anger.png")
+        await new Promise(r => setTimeout(r, time));
+        image("default.png")
+        }
+        if (rng == 2) {
+        image("disgust.png")
+        await new Promise(r => setTimeout(r, time));
+        image("default.png")
+        }
+        if (rng == 3) {
+        image("determination.png")
+        await new Promise(r => setTimeout(r, time));
+        image("default.png")
+        }
+        if (rng == 4) {
+        image("sadness.png")
+        await new Promise(r => setTimeout(r, time));
+        image("default.png")
+        }
+        if (rng == 5) {
+        image("fear.png")
+        await new Promise(r => setTimeout(r, time));
+        image("default.png")
+        }
+        }
+
+        function r1() {
+            if (rng == 1) {
+                alert("Correct!")
+            } else {
+                alert("Incorrect!")
+            }
+            setImage()
+        }
+        function r2() {
+            if (rng == 2) {
+                alert("Correct!")
+            } else {
+                alert("Incorrect!")
+            }
+            setImage()
+        }
+        function r3() {
+            if (rng == 3) {
+                alert("Correct!")
+            } else {
+                alert("Incorrect!")
+            }
+            setImage()
+        }
+        function r4() {
+            if (rng == 4) {
+                alert("Correct!")
+            } else {
+                alert("Incorrect!")
+            }
+            setImage()
+        }
+        function r5() {
+            if (rng == 5) {
+                alert("Correct!")
+            } else {
+                alert("Incorrect!")
+            }
+            setImage()
+        }
+        setImage()
+        </script>
+    </body>

@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Murder Dolphin will murder you",
+        "name": "Murder Dolphin",
+        "uuid": "9f7d0649-254f-4107-a32c-c29649a21c28",
+        "version": [ 0, 0, 1 ],
+        "min_engine_version": [ 1, 17, 10 ]
+    },
+    "modules": [
+        {
+            "description": "Murder Dolphin will murder you",
+            "type": "data",
+            "uuid": "9f7d0649-254f-4107-a32c-c29649a21c29",
+            "version": [0, 0, 1]
+        }
+    ]
+}

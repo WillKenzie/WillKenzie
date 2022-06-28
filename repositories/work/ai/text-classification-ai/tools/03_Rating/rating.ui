@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.8.2 -->
+<interface>
+  <!-- interface-name rating.ui -->
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkWindow" id="rating_window">
+    <property name="default-height">600</property>
+    <property name="default-width">600</property>
+    <property name="title">CyberAcuity Rating Program</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="halign">center</property>
+            <property name="label">Wait for message to load...</property>
+            <property name="valign">center</property>
+            <property name="vexpand">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="halign">center</property>
+            <property name="margin-bottom">25</property>
+            <child>
+              <object class="GtkBox">
+                <property name="hexpand">True</property>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="label">&lt;=</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="label">1</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-start">5</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="label">2</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-start">5</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="halign">center</property>
+                <property name="label">3</property>
+                <property name="margin-end">5</property>
+                <property name="margin-start">5</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="hexpand">True</property>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="label">4</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-start">5</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="label">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-start">5</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="halign">center</property>
+                    <property name="label">=&gt;</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-start">5</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label">(c) Copyright 2022 by CyberAcuity Inc.</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

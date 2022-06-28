@@ -1,0 +1,219 @@
+@import url("https://use.typekit.net/jmk3xov.css");
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+:root {
+  --dark-bg: rgba(15, 15, 15, 0.50);
+  --spacing: 350px;
+  --sliderWidth: 92%;
+
+  font-family: brandon-grotesque, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+main {
+  width: 100vw;
+  color: white;
+  z-index: 99;
+  position: absolute;
+  width: 100%;
+  margin: 0px auto;
+  padding: 120px 0px;
+  
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+h1, h2, h3, blockquote {
+  font-family: elevon, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+
+  header {
+    background: var(--dark-bg);
+    grid-column: 2 / span 5;
+    font-size: 2.5rem;
+    padding: 2rem;
+    margin-bottom: var(--spacing);
+  }
+
+  section {
+    grid-column: 2 / 8;
+    padding: 1rem;
+    background: var(--dark-bg);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: var(--spacing);
+  }
+
+  blockquote {
+    margin: 0;
+    padding: 0;
+    grid-column: 2 / span 9;
+    margin-bottom: var(--spacing);
+  }
+
+  blockquote p {
+    color: black;
+    background-color: white;
+    font-size: 4rem;
+    display: inline;
+    line-height: 1;
+  }
+
+  .left {
+    grid-column: 6 / 12;
+  }
+  .images {
+    animation: move 1s ease-in-out 0.5s 2 alternate;
+    -moz-animation: move 1s ease-in-out 0.5s 2 alternate;
+    -webkit-animation: move 1s ease-in-out 0.5s 2 alternate;
+    /* This is the animation code. */
+  
+  @keyframes move {
+    from {
+       transform: translateX(0);
+    }
+    to {
+       transform: translateX(100px);
+    }
+  }
+  
+  @-moz-keyframes move {
+    from {
+       -moz-transform: translateX(0);
+    }
+    to {
+       -moz-transform: translateX(100px);
+    }
+  }
+  
+  @-webkit-keyframes move {
+    from {
+       -webkit-transform: translateX(0);
+    }
+    to {
+       -webkit-transform: translateX(100px);
+    }
+  }
+  }
+  /* SLIDER STRUCTURE */
+  
+  #slider {
+    background: #000;
+    border: 5px solid #eaeaea;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    height: 320px;
+    width: var(--sliderWidth);
+    margin: 2rem;
+    overflow: visible;
+    position: relative;
+  }
+  /* HIDE ALL OUTSIDE OF THE SLIDER */
+  
+  #mask {
+    overflow: hidden;
+    height: 320px;
+  }
+  /* IMAGE LIST */
+  
+  #slider ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  
+  #slider li {
+    width: var(--sliderWidth);
+    height: 320px; /* Height Image */
+    position: absolute;
+    top: -325px; /* Original Position - Outside of the Slider */
+    list-style: none;
+  }
+  #slider li.firstanimation {
+    animation: cycle 25s linear infinite;
+  }
+  
+  #slider li.secondanimation {
+    animation: cycletwo 25s linear infinite;
+  }
+  
+  #slider li.thirdanimation {
+    animation: cyclethree 25s linear infinite;
+  }
+  
+  #slider li.fourthanimation {
+    animation: cyclefour 25s linear infinite;
+  }
+  
+  #slider li.fifthanimation {
+    animation: cyclefive 25s linear infinite;
+  }
+  /* ANIMATION */
+  
+  @keyframes cycle {
+    0%  { top: 0px; } /* When you start the slide, the first image is already visible */
+    4%  { top: 0px; } /* Original Position */
+    16% { top: 0px; opacity:1; z-index:0; } /* From 4% to 16 % = for 3 seconds the image is visible */
+    20% { top: 325px; opacity: 0; z-index: 0; } /* From 16% to 20% = for 1 second exit image */
+    21% { top: -325px; opacity: 0; z-index: -1; } /* Return to Original Position */
+    92% { top: -325px; opacity: 0; z-index: 0; }
+    96% { top: -325px; opacity: 0; } /* From 96% to 100% = for 1 second enter image*/
+    100%{ top: 0px; opacity: 1; }
+  }
+  
+  @keyframes cycletwo {
+    0%  { top: -325px; opacity: 0; } /* Original Position */
+    16% { top: -325px; opacity: 0; }/* Starts moving after 16% to this position */
+    20% { top: 0px; opacity: 1; }
+    24% { top: 0px; opacity: 1; }  /* From 20% to 24% = for 1 second enter image*/
+    36% { top: 0px; opacity: 1; z-index: 0; }   /* From 24% to 36 % = for 3 seconds the image is visible */
+    40% { top: 325px; opacity: 0; z-index: 0; } /* From 36% to 40% = for 1 second exit image */
+    41% { top: -325px; opacity: 0; z-index: -1; }   /* Return to Original Position */
+    100%{ top: -325px; opacity: 0; z-index: -1; }
+  }
+  
+  @keyframes cyclethree {
+    0%  { top: -325px; opacity: 0; }
+    36% { top: -325px; opacity: 0; }
+    40% { top: 0px; opacity: 1; }
+    44% { top: 0px; opacity: 1; }
+    56% { top: 0px; opacity: 1; }
+    60% { top: 325px; opacity: 0; z-index: 0; }
+    61% { top: -325px; opacity: 0; z-index: -1; }
+    100%{ top: -325px; opacity: 0; z-index: -1; }
+  }
+  
+  @keyframes cyclefour {
+    0%  { top: -325px; opacity: 0; }
+    56% { top: -325px; opacity: 0; }
+    60% { top: 0px; opacity: 1; }
+    64% { top: 0px; opacity: 1; }
+    76% { top: 0px; opacity: 1; z-index: 0; }
+    80% { top: 325px; opacity: 0; z-index: 0; }
+    81% { top: -325px; opacity: 0; z-index: -1; }
+    100%{ top: -325px; opacity: 0; z-index: -1; }
+  }
+  @keyframes cyclefive {
+    0%  { top: -325px; opacity: 0; }
+    76% { top: -325px; opacity: 0; }
+    80% { top: 0px; opacity: 1; }
+    84% { top: 0px; opacity: 1; }
+    96% { top: 0px; opacity: 1; z-index: 0; }
+    100%{ top: 325px; opacity: 0; z-index: 0; }
+  }
