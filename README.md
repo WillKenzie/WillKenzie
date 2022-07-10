@@ -63,6 +63,7 @@ Foxtrot is simple to install, just run this command and it'll install itself to 
 Anyways, here's the magic command:
 ```
 wget https://raw.githubusercontent.com/willkenzie/willkenzie/main/tools/foxtrot
+chmod +x foxtrot
 ```
 
 ### Doing it without Foxtrot
