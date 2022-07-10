@@ -1,0 +1,126 @@
+#!/bin/python3
+
+# Original Foxtrot made by William Kenzie for the WillKenzie monorepository
+# MIT Licensed in 2022
+# This comment must remain in all substantial portions of the software.
+
+import argparse
+import subprocess
+import os
+from configparser import ConfigParser
+
+if not os.path.exists("foxtrot.conf"):
+    config_object = ConfigParser()
+    config_object["Common"] = {
+    "repository_url": "https://github.com/willkenzie/willkenzie.git"
+    }
+
+    with open("foxtrot.conf", "w") as config:
+        config_object.write(config)
+        config.flush()
+        config.close()
+
+config = ConfigParser()
+config.read('foxtrot.conf')
+
+repository_url = config.get('Common', 'repository_url')
+repository_name = repository_url.split("/")[-1].split(".git")[0]
+
+# Set up argparse
+parser = argparse.ArgumentParser(description='Manage Monolithic Repositories', prog="Foxtrot", epilog='Foxtrot is FOSS!')
+
+# Add some commands
+parser.add_argument('-v', '--version', action="store_true", default=False, help="Prints the version ID")
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-a', '--add', dest="add", type=str, help="Downloads a repository.")
+group.add_argument('-u', '--update', dest="update", action="store_true", default=False, help="Uploads then downloads a repository.")
+group.add_argument('-d', '--delete', dest="delete", type=str, help="Removes the repository locally.")
+group.add_argument('-i', '--init', dest="init", type=str, help="Creates a project")
+group.add_argument('-m', '--manpages', dest="manpages", type=str, help="Gets the docs for a project")
+
+# Parse the commands
+args = parser.parse_args()
+
+if args.version:
+    print("Foxtrot 1.0.0")
+
+if args.add:
+    # Clone WilliamK Repo
+    print("Getting metadata...")
+    if os.path.isdir(repository_name):
+        # Main config has already been done, just add it and go
+        os.chdir(repository_name)
+        print("Downloading requested files...")
+        os.system("git sparse-checkout add repositories/" + args.add)
+        os.system("git sparse-checkout add docs/" + args.add)
+        os.system("git checkout main --quiet")
+    else:
+        if os.system("git clone --quiet --filter=blob:none --no-checkout " + repository_url) != 0:
+            print("Your git is either not configured properly or isn't installed! Alternatively, check if you have permission to create files and folders here.")
+            exit()
+
+        os.chdir(repository_name)
+
+        # Create some config
+        os.system("git config core.sparseCheckout true")
+        os.system("git config pull.rebase false")
+
+        print("Downloading requested files...")
+        # Get the actual files
+        os.system("git sparse-checkout init --cone")
+        os.system("git sparse-checkout add repositories/" + args.add)
+        os.system("git checkout main --quiet")
+
+if args.delete:
+    try:
+        os.chdir(repository_name)
+    except FileNotFoundError:
+        print("This folder doesn't have a copy of the Repository!")
+        exit()
+
+    os.system("git sparse-checkout set " + str(subprocess.run(["git", "sparse-checkout", "list"], capture_output=True).stdout).replace("\n", " ").replace("repositories/" + str(args.delete), " "))
+    os.system("git sparse-checkout set " + str(subprocess.run(["git", "sparse-checkout", "list"], capture_output=True).stdout).replace("\n", " ").replace("docs/" + str(args.delete), " "))
+
+if args.update:
+    try:
+        os.chdir(repository_name)
+    except FileNotFoundError:
+        print("This folder doesn't have a copy of the Repository!")
+        exit()
+
+    os.system("git pull --quiet")
+    os.system("git add *")
+    os.system("git commit")
+    os.system("git push --quiet")
+
+if args.init:
+    try:
+        os.chdir(repository_name)
+    except FileNotFoundError:
+        print("This folder doesn't have a copy of the Repository!")
+        exit()
+    
+    os.mkdir("./repository/" + args.init)
+    os.chdir("./repository/" + args.init)
+    os.mkdir("src")
+    os.mkdir("tools")
+    os.mkdir("docs")
+    with open('.gitignore', 'w') as file:
+        file.write("*.conf")
+
+if args.manpages:
+    try:
+        os.chdir(repository_name)
+    except FileNotFoundError:
+        print("This folder doesn't have a copy of the Repository!")
+        exit()
+
+    try:
+        with open("docs/" + args.manpages) as docs:
+            print(docs)
+    except IsADirectoryError:
+        print("There cannot be documentation for a project group!\n\nNote: Documentation is already downloaded!")
+        exit()
+    except FileNotFoundError:
+        print("There is no documentation matching that project name!")
+        exit()
