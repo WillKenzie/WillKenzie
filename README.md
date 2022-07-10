@@ -32,7 +32,43 @@ If you'd rather use PGP encryption, you can email me at me@williamk.dev and use 
 
 ## Using this monorepository
 All content in this monorepository is MIT licensed unless stated otherwise.
-To clone a specific project, use the following commands
+
+### Introducing Foxtrot
+Foxtrot is a 3KB Python Script designed to make working with the WilliamK Monorepository easier.
+It has simple commands, like --add, --delete, and --update - and that's it!
+You just need to know the structure of the monorepository.
+
+For example:
+
+To get a specific group, run:
+```
+./foxtrot -a work/ai
+```
+
+To download the Kidsafe Project:
+```
+./foxtrot -a work/bots/kidsafe
+```
+
+Done working on a project? Run the following commands to push your changes to the repository (if you have write permission, that is) and delete the project from your local storage:
+```
+./foxtrot -u work
+./foxtrot -d work
+```
+and just like that, all the projects in the Work category are updated and removed!
+
+#### Installing Foxtrot
+Foxtrot is simple to install, just run this command and it'll install itself to your local directory. I personally recommend creating a special folder for my repository and storing Foxtrot there. I do not currently support running Foxtrot globally, since it has no configuration options to work for other monorepositories at this time. It will only work with mine, so it makes little sense to install it to the global user.
+
+Anyways, here's the magic command:
+```
+wget https://raw.githubusercontent.com/willkenzie/willkenzie/main/tools/foxtrot
+```
+
+### Doing it without Foxtrot
+If you hate foxes, you can also do everything manually with Git. Please note I did a lot of research into Git to make Foxtrot, and the commands below are not nearly as fast as Foxtrot, which will only download specific parts. I only recommend doing things manually if you know what you are doing.
+
+Alas, if you don't, here's some pretty basic commands:
 
 ```
 git init
@@ -40,5 +76,3 @@ git remote add williamk https://github.com/willkenzie/willkenzie.git
 git fetch williamk
 git checkout williamk/main -- repositories/[type]/[category (optional)]/[repository_name]
 ```
-
-In the upcoming months, I'll be creating a script that will easily allow you to clone each repository individually or in groups. Until then, pulling based on type, category, and/or the repository name is the easiest way to do it.

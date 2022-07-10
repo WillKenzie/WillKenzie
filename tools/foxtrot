@@ -1,0 +1,70 @@
+#!/bin/python3
+
+import argparse
+import subprocess
+import os
+
+# Set up argparse
+parser = argparse.ArgumentParser(description='Manage the WillKenzie Monolithic Repository', prog="Foxtrot", epilog='The WilliamK Repository is fully MIT licensed, unless stated otherwise. In other words, remix to your hearts content!')
+
+# Add some commands
+parser.add_argument('-v', '--version', action="store_true", default=False, help="Prints the version ID")
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-a', '--add', dest="add", type=str, help="Pulls a repository.")
+group.add_argument('-u', '--update', dest="update", type=str, help="Pushes and Pulls a repository.")
+group.add_argument('-d', '--delete', dest="delete", type=str, help="Removes the repository locally.")
+
+# Parse the commands
+args = parser.parse_args()
+
+if args.version:
+    print("Foxtrot 1.0.0")
+
+if args.add:
+    # Clone WilliamK Repo
+    print("Getting metadata...")
+    if os.path.isdir("willkenzie"):
+        # Main config has already been done, just add it and go
+        os.chdir("willkenzie")
+        print("Downloading requested files...")
+        os.system("git sparse-checkout add repositories/" + args.add)
+        os.system("git checkout main --quiet")
+    else:
+        if os.system("git clone --quiet --filter=blob:none --no-checkout https://github.com/willkenzie/willkenzie.git") != 0:
+            print("Your git is either not configured properly or isn't installed! Alternatively, check if you have permission to create files and folders here.")
+            exit()
+
+        os.chdir("willkenzie")
+
+        # Create some config
+        os.system("git config core.sparseCheckout true")
+        os.system("git config pull.rebase false")
+
+        print("Downloading requested files...")
+        # Get the actual files
+        os.system("git sparse-checkout init --cone")
+        os.system("git sparse-checkout add repositories/" + args.add)
+        os.system("git checkout main --quiet")
+
+if args.delete:
+    try:
+        os.chdir("willkenzie")
+    except FileNotFoundError:
+        print("This folder doesn't have a copy of the WilliamK Repository!")
+        exit()
+
+    os.system("git sparse-checkout set " + str(subprocess.run(["git", "sparse-checkout", "list"], capture_output=True).stdout).replace("\n", " ").replace("repositories/" + str(args.delete), " "))
+
+if args.update:
+    try:
+        os.chdir("willkenzie")
+    except FileNotFoundError:
+        print("This folder doesn't have a copy of the WilliamK Repository!")
+        exit()
+
+    os.system("git pull --quiet")
+    os.system("git add *")
+    os.system("git commit")
+    os.system("git push --quiet")
+
+print("Legal Notice: All code, projects, and compiled binaries are licensed under the MIT license unless stated otherwise.")
