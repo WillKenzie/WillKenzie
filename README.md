@@ -34,36 +34,17 @@ If you'd rather use PGP encryption, you can email me at me@williamk.dev and use 
 All content in this monorepository is MIT licensed unless stated otherwise.
 
 ### Introducing Foxtrot
-Foxtrot is a 3KB Python Script designed to make working with the WilliamK Monorepository easier.
-It has simple commands, like --add, --delete, and --update - and that's it!
-You just need to know the structure of the monorepository.
-
-For example:
-
-To get a specific group, run:
-```
-./foxtrot -a work/ai
-```
-
-To download the Kidsafe Project:
-```
-./foxtrot -a work/bots/kidsafe
-```
-
-Done working on a project? Run the following commands to push your changes to the repository (if you have write permission, that is) and delete the project from your local storage:
-```
-./foxtrot -u work
-./foxtrot -d work
-```
-and just like that, all the projects in the Work category are updated and removed!
-
-#### Installing Foxtrot
 Foxtrot is simple to install, just run this command and it'll install itself to your local directory. I personally recommend creating a special folder for my repository and storing Foxtrot there. I do not currently support running Foxtrot globally, since it has no configuration options to work for other monorepositories at this time. It will only work with mine, so it makes little sense to install it to the global user.
 
 Anyways, here's the magic command:
 ```
-wget https://raw.githubusercontent.com/willkenzie/willkenzie/main/tools/foxtrot
+wget https://raw.githubusercontent.com/willkenzie/willkenzie/main/repositories/work/ease-of-life/foxtrot/src/foxtrot
 chmod +x foxtrot
+```
+
+To learn more about foxtrot, run
+```
+foxtrot -m work/ease-of-life/foxtrot
 ```
 
 ### Doing it without Foxtrot

@@ -6,7 +6,7 @@ Install Foxtrot on Linux or MacOS with the following commands:
 ```
 sudo -i
 cd /bin
-wget https://raw.githubusercontent.com/willkenzie/willkenzie/main/tools/foxtrot
+wget https://raw.githubusercontent.com/willkenzie/willkenzie/main/repositories/work/ease-of-life/foxtrot/src/foxtrot
 chmod +x foxtrot
 exit
 ```
