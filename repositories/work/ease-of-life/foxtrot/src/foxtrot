@@ -28,17 +28,17 @@ repository_url = config.get('Common', 'repository_url')
 repository_name = repository_url.split("/")[-1].split(".git")[0]
 
 # Set up argparse
-parser = argparse.ArgumentParser(description='Manage Monolithic Repositories', prog="Foxtrot", 
+parser = argparse.ArgumentParser(description='Manage Monolithic Repositories', prog="Foxtrot", formatter_class=argparse.RawDescriptionHelpFormatter,
 
-epilog=textwrap.dedent('''\
-         additional information:\n
-            'foxtrot -a /' - Clones all the subrepositories in the monolithic repository\n
-            'foxtrot -d /' - Deletes all the subrepositories, but keeps the monolithic repository's Top-Level Files\n
-            'foxtrot -a -+' - Clones the entire monorepository\n
+epilog='''\n
+additional information:\n
+  'foxtrot -a /' - Clones all the subrepositories in the monolithic repository\n
+  'foxtrot -d /' - Deletes all the subrepositories, but keeps the monolithic repository's Top-Level Files\n
+  'foxtrot -a / -+' - Clones the entire monorepository\n
 \n
 \n
 Foxtrot is FOSS :D
-         '''))
+         ''')
 
 # Add some commands
 parser.add_argument('-v', '--version', action="store_true", default=False, help="Prints the version ID")
