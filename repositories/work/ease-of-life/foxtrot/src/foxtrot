@@ -5,6 +5,7 @@
 # This comment must remain in all substantial portions of the software.
 
 import argparse
+import textwrap
 import subprocess
 import os
 from configparser import ConfigParser
@@ -27,7 +28,14 @@ repository_url = config.get('Common', 'repository_url')
 repository_name = repository_url.split("/")[-1].split(".git")[0]
 
 # Set up argparse
-parser = argparse.ArgumentParser(description='Manage Monolithic Repositories', prog="Foxtrot", epilog='Foxtrot is FOSS!')
+parser = argparse.ArgumentParser(description='Manage Monolithic Repositories', prog="Foxtrot", 
+
+epilog=textwrap.dedent('''\
+         additional information:
+            'foxtrot -a /' - Clones all the subrepositories in the monolithic repository
+            'foxtrot -d /' - Deletes all the subrepositories, but keeps the monolithic repository's Top-Level Files
+            'foxtrot -a -+' - Clones the entire monorepository
+         '''))
 
 # Add some commands
 parser.add_argument('-v', '--version', action="store_true", default=False, help="Prints the version ID")
@@ -37,6 +45,7 @@ group.add_argument('-u', '--update', dest="update", action="store_true", default
 group.add_argument('-d', '--delete', dest="delete", type=str, help="Removes the repository locally.")
 group.add_argument('-i', '--init', dest="init", type=str, help="Creates a project")
 group.add_argument('-m', '--manpages', dest="manpages", type=str, help="Gets the docs for a project")
+parser.add_argument('-+', '--all', action="store_true", default=False, help="Plays all-or-nothing")
 
 # Parse the commands
 args = parser.parse_args()
@@ -47,46 +56,72 @@ if args.version:
 if args.add:
     # Clone WilliamK Repo
     print("Getting metadata...")
-    if os.path.isdir(repository_name):
-        # Main config has already been done, just add it and go
-        os.chdir(repository_name)
-        print("Downloading requested files...")
-        os.system("git sparse-checkout add repositories/" + args.add)
-        os.system("git sparse-checkout add docs/" + args.add)
-        os.system("git checkout main --quiet")
+
+    # If all-or-nothing is being played:
+    if args.all:
+        os.system("git clone " + repository_url)
     else:
-        if os.system("git clone --quiet --filter=blob:none --no-checkout " + repository_url) != 0:
-            print("Your git is either not configured properly or isn't installed! Alternatively, check if you have permission to create files and folders here.")
-            exit()
+        if os.path.isdir(repository_name) or os.path.isdir("../" + repository_name):
+            # Main config has already been done, just add it and go
+            try:
+                os.chdir(repository_name)
+            except FileNotFoundError:
+                os.chdir("../" + repository_name)
 
-        os.chdir(repository_name)
+            print("Downloading requested files...")
+            os.system("git sparse-checkout add repositories/" + args.add)
+            os.system("git sparse-checkout add docs/" + args.add)
+            os.system("git checkout main --quiet")
+        else:
+            if os.system("git clone --quiet --filter=blob:none --no-checkout " + repository_url) != 0:
+                print("Your git is either not configured properly or isn't installed! Alternatively, check if you have permission to create files and folders here.")
+                exit()
 
-        # Create some config
-        os.system("git config core.sparseCheckout true")
-        os.system("git config pull.rebase false")
+            try:
+                os.chdir(repository_name)
+            except FileNotFoundError:
+                os.chdir("../" + repository_name)
 
-        print("Downloading requested files...")
-        # Get the actual files
-        os.system("git sparse-checkout init --cone")
-        os.system("git sparse-checkout add repositories/" + args.add)
-        os.system("git checkout main --quiet")
+            # Create some config
+            os.system("git config core.sparseCheckout true")
+            os.system("git config pull.rebase false")
+
+            print("Downloading requested files...")
+            # Get the actual files
+            os.system("git sparse-checkout init --cone")
+            os.system("git sparse-checkout add repositories/" + args.add)
+            os.system("git checkout main --quiet")
 
 if args.delete:
     try:
         os.chdir(repository_name)
     except FileNotFoundError:
-        print("This folder doesn't have a copy of the Repository!")
-        exit()
+        try:
+            os.chdir("../" + repository_name)
+        except:
+            print("This folder doesn't have a copy of the Repository!")
+            exit()
+    if args.all:
+        try:
+            os.rmdir(repository_name)
+        except FileNotFoundError:
+            os.rmdir("../" + repository_name)
 
     os.system("git sparse-checkout set " + str(subprocess.run(["git", "sparse-checkout", "list"], capture_output=True).stdout).replace("\n", " ").replace("repositories/" + str(args.delete), " "))
     os.system("git sparse-checkout set " + str(subprocess.run(["git", "sparse-checkout", "list"], capture_output=True).stdout).replace("\n", " ").replace("docs/" + str(args.delete), " "))
 
 if args.update:
+    if args.all:
+        print("I'm already updating all!")
+        
     try:
         os.chdir(repository_name)
     except FileNotFoundError:
-        print("This folder doesn't have a copy of the Repository!")
-        exit()
+        try:
+            os.chdir("../" + repository_name)
+        except:
+            print("This folder doesn't have a copy of the Repository!")
+            exit()
 
     os.system("git pull --quiet")
     os.system("git add *")
@@ -97,8 +132,11 @@ if args.init:
     try:
         os.chdir(repository_name)
     except FileNotFoundError:
-        print("This folder doesn't have a copy of the Repository!")
-        exit()
+        try:
+            os.chdir("../" + repository_name)
+        except:
+            print("This folder doesn't have a copy of the Repository!")
+            exit()
     
     os.mkdir("./repository/" + args.init)
     os.chdir("./repository/" + args.init)
@@ -112,8 +150,11 @@ if args.manpages:
     try:
         os.chdir(repository_name)
     except FileNotFoundError:
-        print("This folder doesn't have a copy of the Repository!")
-        exit()
+        try:
+            os.chdir("../" + repository_name)
+        except:
+            print("This folder doesn't have a copy of the Repository!")
+            exit()
 
     try:
         with open("docs/" + args.manpages) as docs:
