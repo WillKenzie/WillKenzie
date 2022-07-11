@@ -13,7 +13,7 @@ from configparser import ConfigParser
 if not os.path.exists("foxtrot.conf"):
     config_object = ConfigParser()
     config_object["Common"] = {
-    "repository_url": "https://github.com/willkenzie/willkenzie.git"
+    "repository_url": "https://github.com/WillKenzie/WillKenzie.git"
     }
 
     with open("foxtrot.conf", "w") as config:
@@ -31,10 +31,13 @@ repository_name = repository_url.split("/")[-1].split(".git")[0]
 parser = argparse.ArgumentParser(description='Manage Monolithic Repositories', prog="Foxtrot", 
 
 epilog=textwrap.dedent('''\
-         additional information:
-            'foxtrot -a /' - Clones all the subrepositories in the monolithic repository
-            'foxtrot -d /' - Deletes all the subrepositories, but keeps the monolithic repository's Top-Level Files
-            'foxtrot -a -+' - Clones the entire monorepository
+         additional information:\n
+            'foxtrot -a /' - Clones all the subrepositories in the monolithic repository\n
+            'foxtrot -d /' - Deletes all the subrepositories, but keeps the monolithic repository's Top-Level Files\n
+            'foxtrot -a -+' - Clones the entire monorepository\n
+\n
+\n
+Foxtrot is FOSS :D
          '''))
 
 # Add some commands
@@ -113,7 +116,7 @@ if args.delete:
 if args.update:
     if args.all:
         print("I'm already updating all!")
-        
+
     try:
         os.chdir(repository_name)
     except FileNotFoundError:
